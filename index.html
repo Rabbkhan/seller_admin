@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seller Admin Page</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #00ff00, #ff00ff, #00ffff);
+      background-size: 600% 600%;
+      animation: neonBackground 10s ease infinite;
+      font-family: Arial, sans-serif;
+    }
+    
+    @keyframes neonBackground {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background: linear-gradient(to bottom right, #c21500, #ffc500);
+      position: relative;
+      height: 800px;
+      overflow-y: auto;
+    }
+
+    .container:before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: linear-gradient(to bottom right, #ffeb3b, #2196f3);
+      z-index: -1;
+      filter: blur(20px);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 30px;
+    }
+    
+    form {
+      text-align: center;
+      margin-bottom: 30px;
+      background: linear-gradient(to bottom right, #FFABAB, #FFDA83);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      display: inline-block;
+      width: 150px;
+      text-align: right;
+      color: #333;
+      margin-right: 10px;
+      font-weight: bold;
+      vertical-align: top; /* Added to align labels */
+    }
+    
+    input[type="number"],
+    input[type="text"],
+    select {
+      width: 250px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      margin-bottom: 15px;
+      vertical-align: top; /* Added to align input and dropdown */
+    }
+    
+    input[type="submit"] {
+      color: #fff;
+      background-color: #333;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 30px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    
+    input[type="submit"]:hover {
+      background-color: #555;
+    }
+    
+    h2 {
+      padding-left: 20px;
+      color: #333;
+      margin-top: 40px;
+    }
+    
+    ul {
+      list-style-type: none;
+      padding-left: 20px;
+      margin-top: 10px;
+    }
+    
+    li {
+      margin-bottom: 10px;
+      padding: 15px;
+      background-color: #fff;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+    
+    .product-info {
+      display: flex;
+      align-items: center;
+    }
+    
+    .product-info span {
+      margin-right: 10px;
+    }
+    
+    .edit-btn,
+    .delete-btn {
+      padding: 5px 10px;
+      background-color: #ccc;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background-color 0.3s ease;
+      margin-left: 10px;
+    }
+    
+    .delete-btn {
+      background-color: #ff0000;
+      color: #fff;
+    }
+    
+    .edit-btn:hover,
+    .delete-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Enter Product Details</h1>
+    <form onsubmit="submitdetails(event)">
+      <label for="sprice">Selling Price:</label>
+      <input type="number" id="sprice" name="sprice" required placeholder="Enter Product Price"><br> <!-- Added <br> to create a line break -->
+
+      <label for="pname">Product Name:</label>
+      <input type="text" id="pname" name="pname" required placeholder="Enter Product Name"><br> <!-- Added <br> to create a line break -->
+
+      <label for="select">Select Category:</label>
+      <select id="select" name="select">
+        <option value="mobile">Mobile</option>
+        <option value="food">Food</option>
+        <option value="fashion">Fashion</option>
+      </select><br> <!-- Added <br> to create a line break -->
+
+      <input type="submit" value="Add Product">
+    </form>
+
+    <h2>Mobile Products</h2>
+    <ul id="mobilelist"></ul>
+
+    <h2>Food Products</h2>
+    <ul id="foodlist"></ul>
+
+    <h2>Fashion Products</h2>
+    <ul id="fashionlist"></ul>
+  </div>
+
+  <script src="promises.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+</body>
+</html>
